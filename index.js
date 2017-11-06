@@ -12,7 +12,12 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
     console.log(req.body);
-  res.send('Ok');
+    var entry = {
+        profilo = req.body.profilo,
+        action = req.body.action,
+        testo = req.body.action_text
+    }
+  res.send(entry);
 });
 
 const PORT = process.env.PORT || 5000;
