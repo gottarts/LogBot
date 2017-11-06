@@ -6,7 +6,7 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.get('/', function (req, res) {
-    console.log(req);
+    //console.log(req);
   res.send('Giao Baolo!');
 });
 
@@ -18,5 +18,5 @@ app.post('/', function (req, res) {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, function () {
-  console.log('Example app listening on port' + PORT);
+  console.log('Example app listening on port ' + PORT);
 });
