@@ -12,11 +12,11 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
     console.log(req.body);
-    var entry = {
-        profilo = req.body.profilo,
-        action = req.body.action,
-        testo = req.body.action_text
-    }
+    var entry = {};
+    entry.profilo = req.body.profilo;
+    entry.action = req.body.action;
+    entry.testo = req.body.action_text;
+      
   res.send(entry);
 });
 
