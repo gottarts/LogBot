@@ -9,7 +9,16 @@ module.exports = (app) => {
 
   app.get('/', function (req, res) {
     //console.log(req);
-    res.send('Giao Baolo!');
+    res.render('home');
+  });
+
+  app.get('/:profilo', function (req, res) {
+    Models.Log.find({ profilo: req.params.profilo }, (err, log) => {
+      if (err) { throw err; }
+      console.log(log);
+      res.render('logs_list', { profilo: req.params.profilo, logs: log });
+    });
+
   });
 
   app.post('/', function (req, res) {

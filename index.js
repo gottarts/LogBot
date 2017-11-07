@@ -1,11 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
+const path = require('path');
 require('./models/Log');
+
+
 
 mongoose.connect(keys.mongoUri);
 
 const app = express();
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
 
 require('./routes/basicRoutes')(app);
 
