@@ -1,8 +1,9 @@
 const bodyParser = require('body-parser');
 const basicServices = require('../services/basicServices');
+const Models = require('../models');
 
 module.exports = (app) => {
-  
+
   app.use(bodyParser.json()); // support json encoded bodies
   app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
@@ -13,11 +14,14 @@ module.exports = (app) => {
 
   app.post('/', function (req, res) {
     console.log(req.body);
-    new Log({
-      profilo: req.body.profilo,
-      action: req.body.action,
-      testo: req.body.action_text
-    }).save();
+    var entry = new Models.Log({ profilo: 'AA', action: 'BB', testo: 'CC' });
+
+    entry.save(function (error) { //This saves the information you see within that Bee declaration (lines 4-6).
+      console.log("Salvato");
+      if (error) {
+        console.error(error);
+      }
+    });
     res.send(entry);
   });
 };

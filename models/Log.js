@@ -7,4 +7,5 @@ const logSchema = new Schema({
     testo: String
 });
 
-mongoose.model('logs', logSchema);
+
+module.exports.logSchema = logSchema;
