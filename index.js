@@ -1,24 +1,13 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const mongoose = require('mongoose');
+const keys = require('./config/keys');
+require('./models/Log');
 
-var bodyParser = require('body-parser');
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+mongoose.connect(keys.mongoUri);
 
-app.get('/', function (req, res) {
-  console.log(req);
-  res.send('Giao Baolo!');
-});
+const app = express();
 
-app.post('/', function (req, res) {
-    console.log(req.body);
-    var entry = {};
-    entry.profilo = req.body.profilo;
-    entry.action = req.body.action;
-    entry.testo = req.body.action_text;
-      
-  res.send(entry);
-});
+require('./routes/basicRoutes')(app);
 
 const PORT = process.env.PORT || 5000;
 
