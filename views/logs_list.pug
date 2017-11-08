@@ -1,8 +1,8 @@
 extends layout.pug
 
 block content
-h1 Log di #{profilo}
+    h1 Log di #{profilo}
 
-ul
-    for log in logs
-        li #{log.createdAt}: #{log.profilo} || #{log.action} - #{log.testo}
+    ul
+        for log in logs
+            li #{log.createdAt}: #{log.profilo} || #{log.action} - #{log.testo}
