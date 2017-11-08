@@ -5,7 +5,7 @@ const path = require('path');
 require('./models/Log');
 
 
-
+mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoUri);
 
 const app = express();
