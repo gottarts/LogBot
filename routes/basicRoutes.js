@@ -23,7 +23,7 @@ module.exports = (app) => {
 
   app.post('/', function (req, res) {
     console.log(req.body);
-    var entry = new Models.Log({ profilo: req.body.profilo, action: req.body.action, testo: req.body.action-text });
+    var entry = new Models.Log({ profilo: req.body.profilo, action: req.body.action, testo: req.body.text });
 
     entry.save(function (error) { //This saves the information you see within that Bee declaration (lines 4-6).
       console.log("Salvato");
