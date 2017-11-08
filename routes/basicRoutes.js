@@ -8,8 +8,11 @@ module.exports = (app) => {
   app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
   app.get('/', function (req, res) {
-    //console.log(req);
-    res.render('home');
+    Models.LogStatus.find({}, (err, status) => {
+      if (err) { throw err; }
+      console.log(log);
+      res.render('home', { status: status });
+    });
   });
 
   app.get('/:profilo', function (req, res) {
@@ -25,12 +28,20 @@ module.exports = (app) => {
     console.log(req.body);
     var entry = new Models.Log({ profilo: req.body.profilo, action: req.body.action, testo: req.body.text });
 
-    entry.save(function (error) { //This saves the information you see within that Bee declaration (lines 4-6).
+    entry.save(function (error) {
       console.log("Salvato");
       if (error) {
         console.error(error);
       }
     });
+    var status = new Models.LogStatus({ profilo: entry.profilo, status: entry.action });
+    status.update({ profilo: status.profilo }, status, { upsert: true, setDefaultsOnInsert: true }, (function (error) {
+      console.log("Status aggiornato");
+      if (error) {
+        console.error(error);
+      }
+    }));
+
     res.end();
   });
 };
