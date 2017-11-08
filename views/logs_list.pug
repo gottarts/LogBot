@@ -3,6 +3,19 @@ extends layout.pug
 block content
     h1 Log di #{profilo}
 
-    ul
-        for log in logs
-            li #{log.createdAt}: #{log.profilo} || #{log.action} - #{log.testo}
+    div
+        table
+            thead
+                tr
+                    th Data
+                    th Profilo
+                    th Azione
+                    th Testo
+            tbody
+                each log in logs
+                    tr
+                        td #{log.createdAt}
+                        td #{log.profilo}
+                        td #{log.action}
+                        td #{log.testo}
+                    
