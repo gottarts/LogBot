@@ -29,18 +29,20 @@ module.exports = (app) => {
     var entry = new Models.Log({ profilo: req.body.profilo, action: req.body.action, testo: req.body.text });
 
     entry.save(function (error) {
+      if (error) {
+        console.error('Error:' + error);
+      }
       console.log("Salvato");
-      if (error) {
-        console.error(error);
-      }
+
+      var status = new Models.LogStatus({ profilo: entry.profilo, status: entry.action });
+      status.update({ profilo: status.profilo }, status, { upsert: true, setDefaultsOnInsert: true }, (function (error) {
+        console.log("Status aggiornato");
+        if (error) {
+          console.error(error);
+        }
+      }));
     });
-    var status = new Models.LogStatus({ profilo: entry.profilo, status: entry.action });
-    status.update({ profilo: status.profilo }, status, { upsert: true, setDefaultsOnInsert: true }, (function (error) {
-      console.log("Status aggiornato");
-      if (error) {
-        console.error(error);
-      }
-    }));
+
 
     res.end();
   });
