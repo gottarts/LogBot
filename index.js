@@ -2,13 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const path = require('path');
+
+
 require('./models/Log');
+
 
 
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoUri);
 
 const app = express();
+app.locals.moment = require('moment');
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
