@@ -3,9 +3,11 @@ extends layout.pug
 block content
     h1 Log di #{profilo}
 
+    var tableClasses = ['table', 'table-dark', 'table-striped']
+
     div
-        table (class='table table-dark table-striped')
-            thead (class='thead-light')
+        table(class=tableClasses)
+            thead(class='thead-light')
                 tr
                     th Data
                     th Profilo
