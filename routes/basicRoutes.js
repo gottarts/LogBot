@@ -10,7 +10,7 @@ module.exports = (app) => {
   app.get('/', function (req, res) {
     Models.LogStatus.find({}, (err, status) => {
       if (err) { throw err; }
-      console.log(log);
+      console.log(status);
       res.render('home', { status: status });
     });
   });
