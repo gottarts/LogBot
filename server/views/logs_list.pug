@@ -13,7 +13,7 @@ block content
             tbody
                 each log in logs
                     tr
-                        td #{moment(log.createdAt).format('DD/MM/YYYY HH:MM')}
+                        td #{moment(log.createdAt).format('DD/MM/YYYY HH:mm')}
                         td #{log.action}
                         td #{log.testo}
                     
