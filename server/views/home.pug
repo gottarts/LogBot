@@ -5,5 +5,6 @@ block content
         p Made by Got
 
         each state in status
+                var url = #{state.profilo}
                 p
-                        a(href='/' + #{state.profilo}) #{state.profilo} - #{state.status} -  #{moment(state.createdAt).format('DD/MM/YYYY HH:mm')}
+                        a(href='/' + url) #{state.profilo} - #{state.status} -  #{moment(state.createdAt).format('DD/MM/YYYY HH:mm')}
